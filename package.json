@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/kwhitejr/galactic-puma/issues"
   },
-  "homepage": "https://github.com/kwhitejr/galactic-puma#readme"
+  "homepage": "https://github.com/kwhitejr/galactic-puma#readme",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "jade": "^1.11.0"
+  }
 }
