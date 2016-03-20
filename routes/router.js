@@ -1,6 +1,8 @@
 var express =       require('express'),
     validator =     require('express-validator'),
-    router =        express.Router();
+    router =        express.Router(),
+    db =            require('../models'),
+    User =          db.User;
 
 
 var flash = {};
@@ -88,7 +90,7 @@ router.route('/register')
     var errors = req.validationErrors();
     if (errors) {
       flash = {type: 'alert-danger', messages: errors};
-      res.send('register');
+      res.redirect('register');
 
     } else {
       var newUser = {
@@ -98,12 +100,17 @@ router.route('/register')
         email: req.body.email
       };
 
-      flash.type = 'alert-success';
-      flash.messages = [{ msg: 'Please check your email to verify your registration. Then you will be ready to log in!' }];
-      res.render('login', { flash: flash });
+      User.create(newUser)
+        .then(function (result) {
+          flash.type = 'alert-success';
+          flash.messages = [{ msg: 'Please check your email to verify your registration. Then you will be ready to log in!' }];
+          res.render('login', { flash: flash });
+        })
+        .catch(function (errors) {
+          flash = {type: 'alert-danger', messages: errors};
+          res.redirect('register');
+        });
     }
-
-
   });
 
 router.route('/dashboard')

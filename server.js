@@ -1,8 +1,10 @@
 var express =       require('express'),
     bodyParser =    require('body-parser'),
+    validator =     require('express-validator'),
     CONFIG =        require('./config.json'),
     router =        require('./routes/router'),
-    validator =     require('express-validator');
+    db =            require('./models'),
+    User =          db.User;
 
 var app = express();
 
