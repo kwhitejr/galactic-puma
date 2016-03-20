@@ -90,7 +90,7 @@ router.route('/register')
     var errors = req.validationErrors();
     if (errors) {
       flash = {type: 'alert-danger', messages: errors};
-      res.redirect('register');
+      res.render('register', { flash: flash });
 
     } else {
       var newUser = {
@@ -108,7 +108,7 @@ router.route('/register')
         })
         .catch(function (errors) {
           flash = {type: 'alert-danger', messages: errors};
-          res.redirect('register');
+          res.redirect('register', { flash: flash });
         });
     }
   });
