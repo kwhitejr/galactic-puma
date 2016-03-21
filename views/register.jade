@@ -8,13 +8,13 @@ html
     link(rel='stylesheet', href='styles/styles.css')
   body
     .login.well
-      h1  Tally Ho!
+      h1  Roaster Registration
       hr
       form(id='register-form', method='POST', action='/register' novalidate)
         .form-group
-          label(for='display') Display Name
+          label(for='display') Roaster Business Name
           input(type='text', name='display', class='form-control',
-            id='display', placeholder='Enter display name')
+            id='display', placeholder='Enter roaster business name')
         .form-group
           label(for='username') Username
           input(type='text', name='username', class='form-control',
