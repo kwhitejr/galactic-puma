@@ -108,7 +108,7 @@ router.route('/register')
         })
         .catch(function (errors) {
           flash = {type: 'alert-danger', messages: errors};
-          res.redirect('register', { flash: flash });
+          res.render('register', { flash: flash });
         });
     }
   });
