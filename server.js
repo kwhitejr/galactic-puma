@@ -8,7 +8,7 @@ var express =       require('express'),
     CONFIG =        require('./config.json'),
     router =        require('./routes/router'),
     db =            require('./models'),
-    User =          db.User;
+    Roaster =       db.Roaster;
 
 var app = express();
 
@@ -38,13 +38,11 @@ passport.use(new LocalStrategy(
   function (req, username, password, done) {
     console.log('username: ', username);
     console.log('password: ', password);
-    User.findOne({
-      // where: {
-        username: username,
-        password: password
-      // }
-    }).
-    then(function (user) {
+    Roaster.findOne({
+      username: username,
+      password: password
+    })
+    .then(function (user) {
       console.log('got user');
       if ( !user ) {
         return done(null, false);

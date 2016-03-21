@@ -11,12 +11,30 @@ html
       h1  Roaster Registration
       hr
       form(id='register-form', method='POST', action='/register' novalidate)
+        h3 Business Address
         .form-group
-          label(for='display') Roaster Business Name
-          input(type='text', name='display', class='form-control',
-            id='display', placeholder='Enter roaster business name')
+          label(for='roasterBusinessName') Roaster Business Name
+          input(type='text', name='roasterBusinessName', class='form-control',
+            id='roasterBusinessName', placeholder='Enter roaster business name')
         .form-group
-          label(for='username') Username
+          label(for='street') Street
+          input(type='text', name='street', class='form-control',
+            id='street', placeholder='456 Coffee Road')
+        .form-group
+          label(for='state') State
+          input(type='text', name='state', class='form-control',
+            id='state', placeholder='State')
+        .form-group
+          label(for='zipCode') Zip Code
+          input(type='text', name='zipCode', class='form-control',
+            id='zipCode', placeholder='Zip code')
+        .form-group
+          label(for='website') Website
+          input(type='text', name='website', class='form-control',
+            id='website', placeholder='www.bestroasterever.com')
+        h3 Account Information
+        .form-group
+          label(for='username') Account Username
           input(type='text', name='username', class='form-control',
             id='username', placeholder='Enter username')
         .form-group
@@ -28,7 +46,7 @@ html
           input(type='password', name='confirm-password', class='form-control',
             id='confirm-password', placeholder='Confirm password')
         .form-group
-          label(for='email') Email
+          label(for='email') Account Email
           input(type='email', name='email', class='form-control',
             id='email', placeholder='Enter email')
         .form-group

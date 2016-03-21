@@ -3,8 +3,12 @@
 var crypto = require('crypto');
 
 module.exports = function(sequelize, DataTypes) {
-  var User = sequelize.define('User', {
-    displayName: DataTypes.STRING,
+  var Roaster = sequelize.define('Roaster', {
+    roasterBusinessName: DataTypes.STRING,
+    street: DataTypes.STRING,
+    state: DataTypes.STRING,
+    zipCode: DataTypes.STRING,
+    website: DataTypes.STRING,
     username: DataTypes.STRING,
     password: DataTypes.STRING,
     email: DataTypes.STRING
@@ -19,7 +23,7 @@ module.exports = function(sequelize, DataTypes) {
       associate: function() {}
     }
   });
-  return User;
+  return Roaster;
 };
 
 function hashPassword (password) {

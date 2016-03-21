@@ -4,7 +4,7 @@ var express =       require('express'),
     session =       require('express-session'),
     router =        express.Router(),
     db =            require('../models'),
-    User =          db.User;
+    Roaster =       db.Roaster;
 
 
 var flash = {};
@@ -12,7 +12,7 @@ var flash = {};
 router.route('/dashboard')
   .get(function(req, res) {
     console.log(req.session.passport);
-    res.render('dashboard', { user: req.session.passport.user });
+    res.render('dashboard', { roaster: req.session.passport.roaster });
   });
 
 router.route('/login')
@@ -43,7 +43,7 @@ router.route('/register')
   .post(function (req, res) {
     req.checkBody('username', 'Username is required.').notEmpty();
     req.checkBody('password', 'Password is required').notEmpty();
-    req.checkBody('display', 'DisplayName is required').notEmpty();
+    req.checkBody('roasterBusinessName', 'Business name is required').notEmpty();
     req.checkBody('email', 'Email is required').notEmpty();
     req.checkBody('email', 'Email does not appear to be valid').isEmail();
 
@@ -53,14 +53,19 @@ router.route('/register')
       res.render('register', { flash: flash });
 
     } else {
-      var newUser = {
+      console.log(req.body);
+      var newRoaster = {
+        roasterBusinessName: req.body.roasterBusinessName,
+        street: req.body.street,
+        state: req.body.state,
+        zipCode: req.body.zipCode,
+        webSite: req.body.webSite,
         username: req.body.username,
         password: req.body.password,
-        displayName: req.body.display,
         email: req.body.email
       };
 
-      User.create(newUser)
+      Roaster.create(newRoaster)
         .then(function (result) {
           flash.type = 'alert-success';
           flash.messages = [{ msg: 'Please check your email to verify your registration. Then you will be ready to log in!' }];
