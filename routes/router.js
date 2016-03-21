@@ -12,7 +12,7 @@ var flash = {};
 router.route('/dashboard')
   .get(function(req, res) {
     console.log(req.session.passport);
-    res.render('dashboard', { roaster: req.session.passport.roaster });
+    res.render('roaster-dashboard', { roaster: req.session.passport.user });
   });
 
 router.route('/login')
@@ -38,7 +38,7 @@ router.route('logout')
 
 router.route('/register')
   .get(function (req, res) {
-    res.render('register');
+    res.render('register-roaster');
   })
   .post(function (req, res) {
     req.checkBody('username', 'Username is required.').notEmpty();
@@ -50,7 +50,7 @@ router.route('/register')
     var errors = req.validationErrors();
     if (errors) {
       flash = {type: 'alert-danger', messages: errors};
-      res.render('register', { flash: flash });
+      res.render('register-roaster', { flash: flash });
 
     } else {
       console.log(req.body);
@@ -73,14 +73,14 @@ router.route('/register')
         })
         .catch(function (errors) {
           flash = {type: 'alert-danger', messages: errors};
-          res.render('register', { flash: flash });
+          res.render('register-roaster', { flash: flash });
         });
     }
   });
 
-router.route('/dashboard')
-  .get(function(req, res) {
-    res.render('dashboard');
-  });
+  router.route('/register-product')
+    .get(function (req, res) {
+      res.render('register-product', { roaster: req.session.passport.roaster });
+    });
 
 module.exports = router;
